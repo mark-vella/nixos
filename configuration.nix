@@ -99,12 +99,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git
-    neovim
-    ripgrep
-    nodejs_24
     bun
+    docker
+    git
+    lazydocker
+    lazygit
+    neovim
+    nodejs_24
     opencode
+    pgtop
+    powertop
+    ripgrep
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
