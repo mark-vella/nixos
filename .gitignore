@@ -1,0 +1,25 @@
+# --- OS / editor noise ------------------------------------------------------
+*~
+*.swp
+*.swo
+*.swn
+*.bak
+*.orig
+*.rej
+*.tmp
+*#
+.#*
+
+result
+result-*
+*.drv
+*.lock
+*.log
+
+hardware-configuration.nix
+*.key
+*.pem
+*.crt
+*.secret
+secrets.nix
+local.nix
