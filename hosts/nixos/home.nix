@@ -39,7 +39,11 @@ in
 
     file = {
       ".config/hypr".source = ../../dotfiles/.config/hypr;
+      ".config/hypr".force = true;
       ".config/waybar".source = ../../dotfiles/.config/waybar;
+      ".config/waybar".force = true;
+      ".config/starship.toml".source = ../../dotfiles/.config/starship.toml;
+      ".config/starship.toml".force = true;
     };
   };
 
