@@ -22,7 +22,7 @@ in
 
     packages = with pkgs; [
       kitty
-      rofi-wayland
+      rofi
       yazi
       hyprpaper
     ];
