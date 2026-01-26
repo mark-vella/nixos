@@ -47,6 +47,7 @@ in
     };
   };
   services.displayManager.gdm.enable = true;
+  services.displayManager.defaultSession = "hyprland";
   services.desktopManager.gnome.enable = true;
 
   services.printing.enable = true;
