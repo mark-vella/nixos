@@ -30,6 +30,7 @@ in
     file = {
       ".config/hypr/hyprland.conf".source = ../../dotfiles/.config/hypr/hyprland.conf;
       ".config/hypr/themes.conf".source = ../../dotfiles/.config/hypr/themes.conf;
+      ".config/hypr/hyprpaper.conf".source = ../../dotfiles/.config/hypr/hyprpaper.conf;
     };
   };
 
