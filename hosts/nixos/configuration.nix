@@ -141,7 +141,6 @@ in
     pavucontrol
     ffmpeg
     mpv
-    deadbeef-with-plugins
 
     # Image and graphics
     imagemagick
