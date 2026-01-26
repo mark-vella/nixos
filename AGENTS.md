@@ -1,5 +1,29 @@
 # Agent Guidelines for NixOS Configuration
 
+## ⚠️ IMPORTANT: Command Execution
+
+**NEVER run `sudo` commands directly** - they will fail due to password prompts.
+
+**ALWAYS check if running as root first:**
+```bash
+# Check if running as root
+if [ "$EUID" -eq 0 ]; then
+  # Safe to run nixos-rebuild commands
+  nixos-rebuild switch --flake .#nixos
+else
+  # Inform user to run command manually
+  echo "Please run this command as root:"
+  echo "sudo nixos-rebuild switch --flake .#nixos"
+fi
+```
+
+**For nixos-rebuild operations:**
+- Build only: `sudo nixos-rebuild build --flake .#nixos`
+- Dry-run: `sudo nixos-rebuild dry-activate --flake .#nixos`
+- Switch: `sudo nixos-rebuild switch --flake .#nixos`
+
+**User must run these manually** with their own sudo privileges.
+
 ## Build and Validation Commands
 
 ### Core NixOS Commands
