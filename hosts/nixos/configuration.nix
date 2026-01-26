@@ -45,9 +45,9 @@ in
       layout = "us";
       variant = "";
     };
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
   };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   services.printing.enable = true;
 
