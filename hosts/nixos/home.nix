@@ -25,12 +25,21 @@ in
       rofi
       yazi
       hyprpaper
+      hyprshot
+      swww
+      swappy
+      imv
+      brightnessctl
+      playerctl
+      wlogout
+      networkmanagerapplet
+      pavucontrol
+      cliphist
     ];
 
     file = {
-      ".config/hypr/hyprland.conf".source = ../../dotfiles/.config/hypr/hyprland.conf;
-      ".config/hypr/themes.conf".source = ../../dotfiles/.config/hypr/themes.conf;
-      ".config/hypr/hyprpaper.conf".source = ../../dotfiles/.config/hypr/hyprpaper.conf;
+      ".config/hypr".source = ../../dotfiles/.config/hypr;
+      ".config/waybar".source = ../../dotfiles/.config/waybar;
     };
   };
 

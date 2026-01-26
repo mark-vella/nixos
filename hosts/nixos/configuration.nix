@@ -52,16 +52,7 @@ in
 
   services.printing.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-  };
   services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -75,15 +66,17 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = userDescription;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
   };
 
   programs.firefox.enable = true;
   programs.hyprland.enable = true;
+  programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    # Core tools
     bun
     docker
     git
@@ -95,13 +88,129 @@ in
     pgtop
     powertop
     ripgrep
+    starship
+    zoxide
+    fzf
+    tmux
+    eza
+    bat
 
+    # Development tools
+    go
+    lua
+    python3
+    python3Packages.pip
+    clang
+    zig
+    rustup
+    nodePackages_latest.pnpm
+    nodePackages_latest.yarn
+    gcc
+    openssl
+    gnumake
+    meson
+    ninja
+    coreutils
+
+    # File management and archives
+    thunar
+    thunar-archive-plugin
+    thunar-volman
+    yazi
+    p7zip
+    unzip
+    zip
+    unrar
+    file-roller
+    ncdu
+    duf
+
+    # System monitoring
+    htop
+    btop
+    lm_sensors
+    inxi
+
+    # Network and internet
+    aria2
+    qbittorrent
+    tailscale
+
+    # Audio and video
+    pulseaudio
+    pavucontrol
+    ffmpeg
+    mpv
+    deadbeef-with-plugins
+
+    # Image and graphics
+    imagemagick
+    gimp
+    hyprpicker
+    swww
+    imv
+    swappy
+
+    # Productivity and office
+    obsidian
+    libreoffice-qt6-fresh
+
+    # Communication and social
+    telegram-desktop
+    vesktop
+    element-desktop
+
+    # Browsers
+    firefox
+
+    # System utilities
+    libgcc
+    bc
+    libnotify
+    v4l-utils
+    socat
+    pkg-config
+    brightnessctl
+    playerctl
+    appimage-run
+    yad
+
+    # Wayland specific
+    hyprshot
+    grim
+    slurp
     waybar
     dunst
     wl-clipboard
-    hyprshot
     cliphist
-    kitty
+
+    # Virtualization
+    libvirt
+    qemu
+    virt-manager
+    spice
+    spice-gtk
+    spice-protocol
+    OVMF
+
+    # File systems
+    ntfs3g
+    os-prober
+
+    # Downloaders
+    yt-dlp
+
+    # Fun and customization
+    cmatrix
+    lolcat
+    fastfetch
+
+    # Education
+    wireshark
+
+    # Music
+    pear-desktop
+    spotify
   ];
 
   nix.settings = {
@@ -110,6 +219,88 @@ in
       "flakes"
     ];
     auto-optimise-store = true;
+  };
+
+  services = {
+    libinput.enable = true;
+    upower.enable = true;
+    gvfs.enable = true;
+    openssh.enable = true;
+    flatpak.enable = true;
+    thermald.enable = true;
+    gnome.gnome-keyring.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
+  };
+
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        runAsRoot = true;
+      };
+    };
+  };
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    graphics.enable = true;
+  };
+
+  services.blueman.enable = true;
+
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
+
+  fonts.packages = with pkgs; [
+    noto-fonts-color-emoji
+    fira-sans
+    roboto
+    noto-fonts-cjk-sans
+    font-awesome
+    material-icons
+  ];
+
+  xdg.mime.defaultApplications = {
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/chrome" = "firefox.desktop";
+    "text/html" = "firefox.desktop";
+    "application/x-extension-htm" = "firefox.desktop";
+    "application/x-extension-html" = "firefox.desktop";
+    "application/x-extension-shtml" = "firefox.desktop";
+    "application/x-extension-xhtml" = "firefox.desktop";
+    "application/xhtml+xml" = "firefox.desktop";
+    "inode/directory" = "thunar.desktop";
+    "text/plain" = "nvim.desktop";
+    "x-scheme-handler/terminal" = "kitty.desktop";
+    "video/quicktime" = "mpv.desktop";
+    "video/x-matroska" = "mpv.desktop";
+    "application/pdf" = "firefox.desktop";
+    "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
+    "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
   };
 
   system.stateVersion = "25.11";
