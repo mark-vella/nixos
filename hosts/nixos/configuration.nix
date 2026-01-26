@@ -62,6 +62,15 @@ in
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+  };
+
   users.users.${username} = {
     isNormalUser = true;
     description = userDescription;
@@ -69,6 +78,7 @@ in
   };
 
   programs.firefox.enable = true;
+  programs.hyprland.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -84,6 +94,13 @@ in
     pgtop
     powertop
     ripgrep
+
+    waybar
+    dunst
+    wl-clipboard
+    hyprshot
+    cliphist
+    kitty
   ];
 
   nix.settings = {

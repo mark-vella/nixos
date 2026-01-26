@@ -14,11 +14,23 @@ in
       EDITOR = "nvim";
       VISUAL = "nvim";
       TERMINAL = "kitty";
+
+      XDG_SESSION_TYPE = "wayland";
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_DESKTOP = "Hyprland";
     };
 
     packages = with pkgs; [
       kitty
+      rofi-wayland
+      yazi
+      hyprpaper
     ];
+
+    file = {
+      ".config/hypr/hyprland.conf".source = ../../dotfiles/.config/hypr/hyprland.conf;
+      ".config/hypr/themes.conf".source = ../../dotfiles/.config/hypr/themes.conf;
+    };
   };
 
   programs.home-manager.enable = true;
